@@ -21,6 +21,7 @@ local Enable = true --Make false to disable
 		BackDoorFinder.bad = --list of bad table names etc, make some if you want
 		{
 			["RunConsoleCommand"] = "severe",
+			["RunString"] = "severe",
 			["ConCommand"] = "severe",
 			["SetUserGroup"] = "severe",
 			["Kick"] = "medium",
