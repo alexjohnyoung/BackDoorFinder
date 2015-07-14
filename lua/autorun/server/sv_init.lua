@@ -42,7 +42,9 @@ local Enable = true --Make false to disable
 		BackDoorFinder.hA("Think", BackDoorFinder.tS(BackDoorFinder.mR(1, 500000)), function() 
 			BackDoorFinder.bad = reCop
 			for k,v in pairs(reCop) do 
-				_G[k] = _G[k]
+				if type(_G[k]) == "function" then
+					_G[k] = _G[k]
+				end
 			end
 		end )
 
