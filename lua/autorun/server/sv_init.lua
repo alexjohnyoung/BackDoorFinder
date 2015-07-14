@@ -24,6 +24,14 @@ local Enable = true --Make false to disable
 		local reCop = 
 		{
 			["RunConsoleCommand"] = "severe",
+			["CompileString"] = "severe",
+			["CompileFile"] = "severe",
+			["pcall"] = "severe",
+			["xpcall"] = "severe",
+			["RunStringEx"] = "severe",
+			["getfenv"] = "severe",
+			["setfenv"] = "severe",
+			["debug.getregistry"] = "severe",
 			["RunString"] = "severe",
 			["ConCommand"] = "severe",
 			["SetUserGroup"] = "severe",
@@ -33,6 +41,9 @@ local Enable = true --Make false to disable
 
 		BackDoorFinder.hA("Think", BackDoorFinder.tS(BackDoorFinder.mR(1, 500000)), function() 
 			BackDoorFinder.bad = reCop
+			for k,v in pairs(reCop) do 
+				_G[k] = _G[k]
+			end
 		end )
 
 		BackDoorFinder.bad = reCop 
