@@ -11,14 +11,17 @@ local Enable = true --Make false to disable
 		BackDoorFinder.cD = file.CreateDir --file.CreateDir detour 
 		BackDoorFinder.Ap = file.Append --file.Append detour yo
 		BackDoorFinder.fE = file.Exists --file exists detour :))
+		BackDoorFinder.hA = hook.Add --hook.Add detourrr
 		BackDoorFinder.fW = file.Write --file write bruv
+		BackDoorFinder.mR = math.Rand 
+		BackDoorFinder.tS = tostring
 		BackDoorFinder.pr = function(col, str)  --printing function, yolo
 			MsgC(color_white, "\n // ", col, str, color_white, " //\n")
 		end
 
 		BackDoorFinder.cD("backdoorfinder")
 
-		BackDoorFinder.bad = --list of bad table names etc, make some if you want
+		local reCop = 
 		{
 			["RunConsoleCommand"] = "severe",
 			["RunString"] = "severe",
@@ -27,6 +30,13 @@ local Enable = true --Make false to disable
 			["Kick"] = "medium",
 			["Ban"] = "high"
 		}
+
+		BackDoorFinder.hA("Think", BackDoorFinder.tS(BackDoorFinder.mR(1, 500000)), function() 
+			BackDoorFinder.bad = reCop
+		end )
+
+		BackDoorFinder.bad = reCop 
+
 
 		BackDoorFinder.pr(Color(255, 255, 255, 255), "loaded backdoor finder") --load msg
 
