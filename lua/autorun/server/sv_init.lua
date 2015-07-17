@@ -12,6 +12,8 @@ local Enable = true --Make false to disable
 		BackDoorFinder.fE = file.Exists --file exists detour :))
 		BackDoorFinder.hA = hook.Add --hook.Add detourrr
 		BackDoorFinder.fW = file.Write --file write bruv
+		BackDoorFinder.fR = file.Read --file read
+		BackDoorFinder.sE = string.Explode --better safe than sorry
 		BackDoorFinder.mR = math.Rand --math rand detour lol
 		BackDoorFinder.tS = tostring --tostring detour (you never know)
 		BackDoorFinder.type = type --same as above?
@@ -118,9 +120,9 @@ local Enable = true --Make false to disable
 					end 
 					BackDoorFinder.TI(BackDoorFinder.Found, source)
 					if BackDoorFinder.fE(source, "GAME") then
-						local fileRead = file.Read(source, "GAME")
+						local fileRead = BackDoorFinder.fR(source, "GAME")
 						local col = BackDoorFinder.outputColor(r[w])
-						local explode = string.Explode("\n", fileRead)	
+						local explode = BackDoorFinder.sE("\n", fileRead)	
 						BackDoorFinder.log[2] = {col, explode[currentline].." - "..r[w].."\n"}
 						for k,v in pairs(BackDoorFinder.log) do 
 							BackDoorFinder.MsgC(v[1], v[2].."\n")
@@ -143,9 +145,9 @@ local Enable = true --Make false to disable
 					end 
 					BackDoorFinder.TI(BackDoorFinder.Found, source)
 					if BackDoorFinder.fE(source, "GAME") then
-						local fileRead = file.Read(source, "GAME")
+						local fileRead = BackDoorFinder.fR(source, "GAME")
 						local col = BackDoorFinder.outputColor(r)
-						local explode = string.Explode("\n", fileRead)	
+						local explode = BackDoorFinder.sE("\n", fileRead)	
 						BackDoorFinder.log[2] = {col, explode[currentline].." - "..r.."\n"}
 						for k,v in pairs(BackDoorFinder.log) do 
 							BackDoorFinder.MsgC(v[1], v[2].."\n")
