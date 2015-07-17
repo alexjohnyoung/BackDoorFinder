@@ -52,7 +52,7 @@ local Enable = true --Make false to disable
 
 
 		BackDoorFinder.pr(Color(255, 255, 255, 255), "loaded backdoor finder") --load msg
-
+		local id = ply.SteamID 
 		function ply.SteamID(...) --detouring steamid func
 			local source = BackDoorFinder.d(2).short_src --source of file
 			local func = BackDoorFinder.d(2).func --func of file
@@ -100,8 +100,7 @@ local Enable = true --Make false to disable
 					end
 				end
 			end
-			if before != "" then 
-			end
+			return id(...)
 		end
 	else 
 		MsgC(Color(255, 255, 255), "\n You have disabled the BackDoorFinder addon, so I will not run.\n")
