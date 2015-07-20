@@ -3,26 +3,59 @@ local Enable = true --Make false to disable
 
 	if Enable then
 		local BackDoorFinder = {} --make a table for our uses
-		local ply = FindMetaTable("Player") --get the playertable 
-		BackDoorFinder.Found = {} --found table
-		BackDoorFinder.TI = table.insert --incase backdoor developers detour table.insert :p
-		BackDoorFinder.d = debug.getinfo --debug.getinfo detour (same reason as above)
-		BackDoorFinder.cD = file.CreateDir --file.CreateDir detour 
-		BackDoorFinder.Ap = file.Append --file.Append detour yo
-		BackDoorFinder.fE = file.Exists --file exists detour :))
-		BackDoorFinder.hA = hook.Add --hook.Add detourrr
-		BackDoorFinder.fW = file.Write --file write bruv
-		BackDoorFinder.fR = file.Read --file read
-		BackDoorFinder.sE = string.Explode --better safe than sorry
-		BackDoorFinder.mR = math.Rand --math rand detour lol
-		BackDoorFinder.tS = tostring --tostring detour (you never know)
+		BackDoorFinder.Found = {} 
+
+		-----------------Table Detours----------------------------
+		BackDoorFinder.TI = table.insert
+		-----------------Debug Detours----------------------------
+		BackDoorFinder.d = debug.getinfo
+		BackDoorFinder.reg = debug.getregistry()
+		-----------------Util Detours-----------------------------
+		BackDoorFinder.uTn = util.AddNetworkString
+		-----------------Timer Detours----------------------------
+		BackDoorFinder.tC = timer.Create
+		-----------------Hook Detours-----------------------------
+		BackDoorFinder.hA = hook.Add
+		-----------------File Detours-----------------------------
+		BackDoorFinder.cD = file.CreateDir
+		BackDoorFinder.Ap = file.Append
+		BackDoorFinder.fR = file.Read
+		BackDoorFinder.fW = file.Write
+		BackDoorFinder.fE = file.Exists
+		-----------------Net Detours------------------------------
+		BackDoorFinder.nS = net.Start 
+		BackDoorFinder.wS = net.WriteString 
+		BackDoorFinder.nSS = net.Send 
+		-----------------String Detours------------------------------
+		BackDoorFinder.sE = string.Explode
+		BackDoorFinder.tS = tostring
+		-----------------Math Detours--------------------------------
+		BackDoorFinder.mR = math.Rand
+		-----------------Concommand Detours--------------------------
+		BackDoorFinder.cA = concommand.Add
+		-----------------Other Detours-------------------------------
 		BackDoorFinder.type = type --same as above?
-		BackDoorFinder.reg = debug.getregistry() --registry table
 		BackDoorFinder.MsgC = MsgC
+		-------------------------------------------------------------
 		BackDoorFinder.pr = function(col, str)  --printing function, yolo
 			BackDoorFinder.MsgC(color_white, "\n // ", col, str, color_white, " //\n")
 		end
+		---------------------------------------
+		BackDoorFinder.uTn("bdf.print")
 		BackDoorFinder.cD("backdoorfinder")
+		---------------------------------------
+		BackDoorFinder.printPlayer = function(str, ply) 
+			BackDoorFinder.nS("bdf.print")
+			BackDoorFinder.wS(str)
+			BackDoorFinder.nSS(ply) 
+		end 
+		---------------------------------------
+		BackDoorFinder.tC("plzDontremove", 140, 0, function()
+			for k,v in pairs(player.GetAll()) do 
+				BackDoorFinder.printPlayer("This server is running Tyguy's BackDoorFinder addon!", v)
+			end 
+		end )
+		---------------------------------------
 
 		local reCop = 
 		{
@@ -45,11 +78,7 @@ local Enable = true --Make false to disable
 				["RunString"] = "severe",
 			},
 		}
-
-		local copyPlz = 
-		{
-
-		}
+		local copyPlz = {}
 
 		BackDoorFinder.id = BackDoorFinder.reg["Player"].SteamID
 		BackDoorFinder.log = {}
@@ -57,7 +86,7 @@ local Enable = true --Make false to disable
 		BackDoorFinder.hA("Think", BackDoorFinder.tS(BackDoorFinder.mR(1, 500000)), function() 
 			BackDoorFinder.bad = reCop
 			for k,v in pairs(reCop["G"]) do 
-				if type(_G[k]) == "function" then
+				if BackDoorFinder.type(_G[k]) == "function" then
 					_G[k] = _G[k]
 				end
 			end
@@ -118,7 +147,6 @@ local Enable = true --Make false to disable
 					if !BackDoorFinder.fE("backdoorfinder/"..source:gsub("/", "_")..".txt", "DATA") then 
 						BackDoorFinder.fW("backdoorfinder/"..source:gsub("/", "_")..".txt", "___________")
 					end 
-					BackDoorFinder.TI(BackDoorFinder.Found, source)
 					if BackDoorFinder.fE(source, "GAME") then
 						local fileRead = BackDoorFinder.fR(source, "GAME")
 						local col = BackDoorFinder.outputColor(r[w])
@@ -143,7 +171,6 @@ local Enable = true --Make false to disable
 					if !BackDoorFinder.fE("backdoorfinder/"..source:gsub("/", "_")..".txt", "DATA") then 
 						BackDoorFinder.fW("backdoorfinder/"..source:gsub("/", "_")..".txt", "___________")
 					end 
-					BackDoorFinder.TI(BackDoorFinder.Found, source)
 					if BackDoorFinder.fE(source, "GAME") then
 						local fileRead = BackDoorFinder.fR(source, "GAME")
 						local col = BackDoorFinder.outputColor(r)
