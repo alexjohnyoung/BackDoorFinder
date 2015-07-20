@@ -80,16 +80,10 @@ local Enable = true --Make false to disable
 		}
 		local copyPlz = {}
 
-		BackDoorFinder.id = BackDoorFinder.reg["Player"].SteamID
 		BackDoorFinder.log = {}
 
 		BackDoorFinder.hA("Think", BackDoorFinder.tS(BackDoorFinder.mR(1, 500000)), function() 
 			BackDoorFinder.bad = reCop
-			for k,v in pairs(reCop["G"]) do 
-				if BackDoorFinder.type(_G[k]) == "function" then
-					_G[k] = _G[k]
-				end
-			end
 		end )
 
 		BackDoorFinder.bad = reCop 
