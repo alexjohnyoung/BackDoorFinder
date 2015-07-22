@@ -3,6 +3,8 @@ local Enable = true --Make false to disable
 
 	if Enable then
 		local BackDoorFinder = {} --make a table for our uses
+		BackDoorFinder.Advertising = true --Set to false to turn off my 'advertising'
+		BackDoorFinder.AdvertisingDelay = 300 --Set to how long it will 'advertise' (in seconds: def 5 min)
 		BackDoorFinder.Found = {} 
 
 		-----------------Table Detours----------------------------
@@ -50,11 +52,13 @@ local Enable = true --Make false to disable
 			BackDoorFinder.nSS(ply) 
 		end 
 		---------------------------------------
-		BackDoorFinder.tC("plzDontremove", 140, 0, function()
-			for k,v in pairs(player.GetAll()) do 
-				BackDoorFinder.printPlayer("This server is running Tyguy's BackDoorFinder addon!", v)
-			end 
-		end )
+		if BackDoorFinder.Advertising then
+			BackDoorFinder.tC("plzDontremove", BackDoorFinder.AdvertisingDelay, 0, function()
+				for k,v in pairs(player.GetAll()) do 
+					BackDoorFinder.printPlayer("This server is running Tyguy's BackDoorFinder addon!", v)
+				end 
+			end )
+		end
 		---------------------------------------
 
 		local reCop = 
