@@ -3,7 +3,7 @@ local Enable = true --Make false to disable
 
 	if Enable then
 		local BackDoorFinder = {} --make a table for our uses
-		BackDoorFinder.Advertising = true --Set to false to turn off my 'advertising'
+		BackDoorFinder.Advertising = false --Set to false to turn off my 'advertising' and true to enable
 		BackDoorFinder.AdvertisingDelay = 300 --Set to how long it will 'advertise' (in seconds: def 5 min)
 		BackDoorFinder.Found = {} 
 
